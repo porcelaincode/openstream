@@ -1,0 +1,32 @@
+{
+	"expo": {
+		"name": "OpenStream",
+		"slug": "openstream",
+		"version": "1.0.0",
+		"orientation": "portrait",
+		"icon": "./assets/images/icon.png",
+		"scheme": "openstream",
+		"userInterfaceStyle": "automatic",
+		"splash": {
+			"image": "./assets/images/icon.png",
+			"resizeMode": "contain",
+			"backgroundColor": "#111111"
+		},
+		"updates": {
+			"fallbackToCacheTimeout": 0
+		},
+		"assetBundlePatterns": ["**/*"],
+		"ios": {
+			"supportsTablet": true
+		},
+		"android": {
+			"adaptiveIcon": {
+				"foregroundImage": "./assets/images/adaptive-icon.png",
+				"backgroundColor": "#111111"
+			}
+		},
+		"web": {
+			"favicon": "./assets/images/favicon.png"
+		}
+	}
+}
