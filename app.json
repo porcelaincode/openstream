@@ -4,7 +4,7 @@
 		"slug": "openstream",
 		"version": "1.0.0",
 		"orientation": "portrait",
-		"icon": "./assets/images/icon.png",
+		"icon": "./assets/images/favicon.png",
 		"scheme": "openstream",
 		"userInterfaceStyle": "automatic",
 		"splash": {
@@ -23,7 +23,8 @@
 			"adaptiveIcon": {
 				"foregroundImage": "./assets/images/adaptive-icon.png",
 				"backgroundColor": "#111111"
-			}
+			},
+			"package": "com.openstream.app"
 		},
 		"web": {
 			"favicon": "./assets/images/favicon.png"

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 
 import { View, Text, BoldText } from "../Common/Themed";
@@ -13,10 +13,16 @@ interface MessageProps {
 	fromUser: boolean;
 	time: string;
 	sticker?: string;
+	lastMessageUserSame?: boolean;
 }
 
 export default function Message(props: MessageProps) {
 	const colorScheme = useColorScheme();
+	const [showTime, setShowTime] = useState(false);
+
+	function handleMessagePress() {
+		setShowTime(!showTime);
+	}
 
 	return (
 		<View
@@ -27,7 +33,7 @@ export default function Message(props: MessageProps) {
 				alignItems: "flex-start",
 			}}
 		>
-			{!props.fromUser && (
+			{!props.fromUser && !props.lastMessageUserSame && (
 				<View
 					style={{
 						borderRadius: 5,
@@ -98,6 +104,8 @@ export default function Message(props: MessageProps) {
 								? Colors[colorScheme].background
 								: Colors[colorScheme].text,
 						}}
+						activeOpacity={SIZES.opacity.active}
+						onPress={handleMessagePress}
 					>
 						<Text
 							style={{
@@ -111,14 +119,16 @@ export default function Message(props: MessageProps) {
 						</Text>
 					</TouchableOpacity>
 				)}
-				<Text
-					style={{
-						color: Colors[colorScheme].tabIconDefault,
-						fontSize: SIZES.font.small,
-					}}
-				>
-					{props.time}
-				</Text>
+				{showTime && (
+					<Text
+						style={{
+							color: Colors[colorScheme].tabIconDefault,
+							fontSize: SIZES.font.small,
+						}}
+					>
+						{props.time}
+					</Text>
+				)}
 			</View>
 		</View>
 	);

@@ -10,7 +10,7 @@ import {
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { AntDesign } from "@expo/vector-icons";
 
-import { Text, View } from "../../components/Common/Themed";
+import { BoldText, Text, View } from "../../components/Common/Themed";
 import {
 	CategoryBtn,
 	CommonStyles,
@@ -22,7 +22,6 @@ import {
 import Modal from "../../components/Common/Modal";
 import Logo from "../../components/Common/Logo";
 
-import { RootTabScreenProps } from "../../types";
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
 import { useNavigation } from "@react-navigation/native";
@@ -167,6 +166,9 @@ export default function Home() {
 											data={[300, 310, 320, 330]}
 											keyExtractor={(e) => e.toString()}
 											horizontal={true}
+											showsHorizontalScrollIndicator={
+												false
+											}
 											renderItem={({ item }) => (
 												<VideoThumbnai
 													imageUri={`https://picsum.photos/${item}`}
@@ -201,6 +203,7 @@ export default function Home() {
 												"Entertainment",
 												"Thriller",
 												"Comedy",
+												"Romance",
 												"Psychological Horror",
 											]}
 											numColumns={3}
@@ -236,13 +239,30 @@ export default function Home() {
 											keyExtractor={(e) => e.toString()}
 											listKey="9493239411"
 											renderItem={({ item }) => (
-												<VideoThumbnai
-													imageUri={`https://picsum.photos/${item}`}
-													onPress={() =>
-														console.log("Meow")
-													}
-													progress={0.5}
-												/>
+												<View
+													style={{ marginBottom: 15 }}
+												>
+													<VideoThumbnai
+														imageUri={`https://picsum.photos/${item}`}
+														onPress={() =>
+															console.log("Meow")
+														}
+														progress={0.5}
+													/>
+													<BoldText
+														style={{
+															fontSize:
+																SIZES.font
+																	.title,
+														}}
+													>
+														Show Title
+													</BoldText>
+													<Text numberOfLines={1}>
+														Show description lorem
+														ipsum dolor ist camen go
+													</Text>
+												</View>
 											)}
 											showsVerticalScrollIndicator={false}
 										/>
