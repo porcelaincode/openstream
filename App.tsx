@@ -9,6 +9,7 @@ import { Store } from "./redux/store";
 import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
 import Navigation from "./navigation";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function App() {
 	const isLoadingComplete = useCachedResources();
@@ -20,9 +21,11 @@ export default function App() {
 		return (
 			<SafeAreaProvider>
 				<Provider store={Store}>
-					<BottomSheetModalProvider>
-						<Navigation colorScheme={colorScheme} />
-					</BottomSheetModalProvider>
+					<GestureHandlerRootView style={{ flex: 1 }}>
+						<BottomSheetModalProvider>
+							<Navigation colorScheme={colorScheme} />
+						</BottomSheetModalProvider>
+					</GestureHandlerRootView>
 				</Provider>
 				<StatusBar />
 			</SafeAreaProvider>

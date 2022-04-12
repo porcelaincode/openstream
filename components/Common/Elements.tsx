@@ -133,9 +133,11 @@ export const CommonStyles = StyleSheet.create({
 });
 
 export function LoadingContainer() {
+	const colorScheme = useColorScheme();
+
 	return (
 		<View style={CommonStyles.loadingContainer}>
-			<ActivityIndicator />
+			<ActivityIndicator color={Colors[colorScheme].tint} size="large" />
 		</View>
 	);
 }
@@ -318,6 +320,7 @@ interface VideoThumbnailProps {
 	size?: number;
 	width?: number;
 	progress?: number;
+	disabled?: boolean;
 }
 
 export function VideoThumbnai(props: VideoThumbnailProps) {
@@ -350,6 +353,7 @@ export function VideoThumbnai(props: VideoThumbnailProps) {
 							zIndex: 3,
 							...CommonStyles.saveBtn,
 						}}
+						disabled={props.disabled || false}
 						activeOpacity={SIZES.opacity.active}
 					>
 						<AntDesign
@@ -366,6 +370,7 @@ export function VideoThumbnai(props: VideoThumbnailProps) {
 				<TouchableOpacity
 					style={{ flex: 1, zIndex: 2 }}
 					onPress={props.onPress}
+					disabled={props.disabled || false}
 					activeOpacity={SIZES.opacity.thumbnail}
 				/>
 			</ImageBackground>

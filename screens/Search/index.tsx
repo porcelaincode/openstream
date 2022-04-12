@@ -1,29 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { useNavigation } from "@react-navigation/native";
-import { useCallback, useMemo, useRef } from "react";
 import { StyleSheet, useColorScheme } from "react-native";
 import { Header, Screen, SearchInput } from "../../components/Common/Elements";
 import Modal from "../../components/Common/Modal";
+import ResultList from "../../components/Search/ResultList";
 
 export default function Search() {
 	const colorScheme = useColorScheme();
 	const navigation: any = useNavigation();
 	const [search, setSearch] = useState<string>("");
+	const [activeTitle, setActiveTitle] = useState<any>(null);
 
 	// hooks
 	const bottomSheetRef = useRef<BottomSheetModal>(null);
-	const snapPoints = useMemo(() => ["25%", "50%"], []);
-	const handleSheetChange = useCallback((index) => {}, []);
+
+	useEffect(() => {
+		if (activeTitle) {
+			bottomSheetRef.current?.present();
+		} else {
+			bottomSheetRef.current?.close();
+		}
+	}, [activeTitle]);
 
 	return (
 		<>
-			<Modal
-				onClick={() => console.log("")}
-				bottomSheetRef={bottomSheetRef}
-				snapPoints={snapPoints}
-				handleChange={handleSheetChange}
-			/>
+			{activeTitle && (
+				<Modal
+					data={activeTitle}
+					loading={false}
+					onClick={() => console.log("")}
+					bottomSheetRef={bottomSheetRef}
+				/>
+			)}
 			<Screen>
 				<Header
 					onBack={() => {
@@ -39,6 +48,11 @@ export default function Search() {
 					placeholder="Search titles"
 					key={9943842934}
 					autoFocus={true}
+				/>
+				<ResultList
+					loading={false}
+					data={[320, 450, 550, 650]}
+					onClick={(item: any) => setActiveTitle(item)}
 				/>
 			</Screen>
 		</>

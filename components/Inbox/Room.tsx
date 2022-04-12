@@ -11,7 +11,7 @@ import {
 	View,
 } from "../../components/Common/Themed";
 import { CategoryBtn, SIZES } from "../../components/Common/Elements";
-import Message from "../../components/Player/Message";
+import Message from "./Message";
 
 import useColorScheme from "../../hooks/useColorScheme";
 import Colors from "../../constants/Colors";
@@ -141,7 +141,7 @@ export default function Room(props: RoomProps) {
 							alignItems: "center",
 						}}
 					>
-						<TouchableOpacity>
+						<TouchableOpacity onPress={createInvite}>
 							<AntDesign
 								name="sharealt"
 								size={SIZES.icon.header}
@@ -204,7 +204,7 @@ export default function Room(props: RoomProps) {
 						// onEndReached={()=>refetch}
 					/>
 					{dialogues && (
-						<View style={{ width: "100%" }}>
+						<View style={{ width: "100%", marginTop: 10 }}>
 							<FlatList
 								horizontal={true}
 								showsHorizontalScrollIndicator={false}
@@ -234,7 +234,7 @@ export default function Room(props: RoomProps) {
 							alignItems: "flex-start",
 							padding: 10,
 							borderRadius: 5,
-							marginBottom: 10,
+							marginVertical: 5,
 							height: 50,
 							maxHeight: 100,
 							borderWidth: 1,

@@ -93,7 +93,7 @@ export default function Message(props: MessageProps) {
 							alignSelf: props.fromUser
 								? "flex-end"
 								: "flex-start",
-							borderBottomLeftRadius: !props.fromUser ? 0 : 10,
+							borderTopLeftRadius: !props.fromUser ? 0 : 10,
 							borderBottomRightRadius: props.fromUser ? 0 : 10,
 							backgroundColor: props.fromUser
 								? Colors[colorScheme].tint

@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
 	FlatList,
 	RefreshControl,
@@ -29,19 +29,29 @@ import { useNavigation } from "@react-navigation/native";
 export default function Home() {
 	const colorScheme = useColorScheme();
 	const navigation: any = useNavigation();
+	const [activeTitle, setActiveTitle] = useState<any>(null);
+
 	// hooks
 	const bottomSheetRef = useRef<BottomSheetModal>(null);
-	const snapPoints = useMemo(() => ["25%", "50%"], []);
-	const handleSheetChange = useCallback((index) => {}, []);
+
+	useEffect(() => {
+		if (activeTitle !== null) {
+			bottomSheetRef.current?.present();
+		} else {
+			bottomSheetRef.current?.close();
+		}
+	}, [activeTitle]);
 
 	return (
 		<>
-			<Modal
-				onClick={() => console.log("")}
-				bottomSheetRef={bottomSheetRef}
-				snapPoints={snapPoints}
-				handleChange={handleSheetChange}
-			/>
+			{activeTitle && (
+				<Modal
+					data={activeTitle}
+					loading={false}
+					onClick={(item: any) => setActiveTitle(item)}
+					bottomSheetRef={bottomSheetRef}
+				/>
+			)}
 			<Screen>
 				<View style={CommonStyles.header}>
 					<Logo size={SIZES.font.header} />
@@ -173,7 +183,9 @@ export default function Home() {
 												<VideoThumbnai
 													imageUri={`https://picsum.photos/${item}`}
 													onPress={() =>
-														console.log("Meow")
+														setActiveTitle({
+															data: "",
+														})
 													}
 													size={150}
 													width={100}

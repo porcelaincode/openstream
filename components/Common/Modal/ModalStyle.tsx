@@ -53,23 +53,15 @@ export const CustomBackground: React.FC<BottomSheetBackgroundProps> = ({
 	animatedIndex,
 }) => {
 	const colorScheme = useColorScheme();
-	//#region styles
+
 	const containerAnimatedStyle = useAnimatedStyle(() => ({
 		// @ts-ignore
 		backgroundColor: interpolateColor(
 			animatedIndex.value,
-			[1, 1],
-			[Colors[colorScheme].background, Colors[colorScheme].background]
+			[0, 0.2],
+			[Colors[colorScheme].inputbg, Colors[colorScheme].inputbg]
 		),
 		borderRadius: 20,
-		shadowColor: "#fff",
-		shadowOffset: {
-			width: 0,
-			height: 5,
-		},
-		shadowOpacity: 0.32,
-		shadowRadius: 5.46,
-		elevation: 9,
 	}));
 	const containerStyle = useMemo(
 		() => [style, containerAnimatedStyle],
